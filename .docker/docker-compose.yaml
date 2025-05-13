@@ -1,0 +1,10 @@
+services:
+  postgres:
+    image: postgres:17.5
+    container_name: postgres
+    environment:
+      POSTGRES_USER: encurtador
+      POSTGRES_PASSWORD: local_password
+      POSTGRES_DB: encurtador-links-db
+    ports:
+      - "5432:5432"

@@ -1,0 +1,51 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "backend para a aplicação de encurtador de links",
+  "main": "main.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --env-file=.env dist/server.js",
+    "dev": "tsc && node --env-file=.env dist/server.js",
+    "build": "tsc",
+    "migration:create": "prisma migrate dev --name",
+    "migration:reset": "prisma migrate reset",
+    "migration:deploy": "prisma migrate deploy",
+    "lint": "eslint . --ext .ts",
+    "format": "prettier --write ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/italomaia03/encurtador-links.git"
+  },
+  "keywords": [
+    "express",
+    "zod",
+    "typescript",
+    "postgresql"
+  ],
+  "author": "Ítalo F. O. Maia",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/italomaia03/encurtador-links/issues"
+  },
+  "homepage": "https://github.com/italomaia03/encurtador-links#readme",
+  "dependencies": {
+    "@prisma/client": "^6.7.0",
+    "express": "^5.1.0",
+    "nanoid": "^5.1.5",
+    "zod": "^3.24.4"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.1",
+    "@types/node": "^22.15.17",
+    "@typescript-eslint/eslint-plugin": "^8.32.1",
+    "@typescript-eslint/parser": "^8.32.1",
+    "eslint": "^9.26.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-prettier": "^5.4.0",
+    "prettier": "^3.5.3",
+    "prisma": "^6.7.0",
+    "typescript": "^5.8.3"
+  }
+}
