@@ -21,4 +21,17 @@ export class URLService {
       throw error;
     }
   }
+
+  async getLongUrl(urlCode: string) {
+    try {
+      const url = await this.urlRepository.findByUrlCode(urlCode);
+      if (!url) {
+        throw new Error('URL not found');
+      }
+      return url.longUrl;
+    } catch (error) {
+      console.error('Error retrieving URL:', error);
+      throw error;
+    }
+  }
 }
