@@ -24,4 +24,16 @@ export class UrlRepository {
       throw error;
     }
   }
+
+  async findByUrlCode(urlCode: string) {
+    try {
+      const url = await prisma.url.findUnique({
+        where: { urlCode },
+      });
+      return url;
+    } catch (error) {
+      console.error('Error finding URL by code:', error);
+      throw error;
+    }
+  }
 }
