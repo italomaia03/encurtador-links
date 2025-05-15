@@ -9,3 +9,4 @@ const urlService = new URLService(urlRepository)
 const urlController = new URLController(urlService);
 
 router.post("/shorten-url", (req: Request, res: Response) => urlController.createShortUrl(req, res));
+router.get("/:urlCode", (req: Request, res: Response) => urlController.getLongUrl(req, res));
