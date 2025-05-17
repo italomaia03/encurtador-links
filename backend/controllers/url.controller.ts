@@ -1,5 +1,5 @@
-import { Request, Response } from "express";
-import { URLService } from "../services/url.service";
+import { Request, Response } from 'express';
+import { URLService } from '../services/url.service';
 
 export class URLController {
   constructor(private readonly urlService: URLService) {}
@@ -27,7 +27,11 @@ export class URLController {
         return;
       }
       const longUrl = await this.urlService.getLongUrl(urlCode);
-      res.redirect(302, longUrl);
+      if (!longUrl) {
+        res.status(404).json({ error: 'URL not found' });
+        return;
+      }
+      res.status(200).json({ longUrl });
     } catch (error) {
       console.error('Error retrieving long URL:', error);
       res.status(500).json({ error: 'Internal Server Error' });
