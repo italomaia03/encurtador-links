@@ -1,6 +1,7 @@
 import { Prisma } from '@prisma/client';
 import prisma from '../config/postgres.config';
 import { URLModel } from '../models/url.model';
+import { UrlAlreadyExistsError } from '../errors/url-already-exists.error';
 
 export class UrlRepository {
   async create(url: URLModel) {
@@ -19,21 +20,15 @@ export class UrlRepository {
           console.error(
             'There is a unique constraint violation, a new url cannot be created with this urlCode',
           );
+          throw new UrlAlreadyExistsError('URL code already exists');
         }
       }
-      throw error;
     }
   }
 
   async findByUrlCode(urlCode: string) {
-    try {
-      const url = await prisma.url.findUnique({
-        where: { urlCode },
-      });
-      return url;
-    } catch (error) {
-      console.error('Error finding URL by code:', error);
-      throw error;
-    }
+    return await prisma.url.findUnique({
+      where: { urlCode },
+    });
   }
 }
